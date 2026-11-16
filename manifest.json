@@ -1,0 +1,29 @@
+{
+  "name": "Ova Birlik",
+  "short_name": "Ova Birlik",
+  "description": "Ova Birlik Kooperatifi: Birecik’te 214 üretici ailenin fıstık, zeytin, bal, pekmez ve buğdayı. Mevsim takvimi, üyelik ve toplu satış. Demo site; içerik kurgusaldır.",
+  "start_url": "/tr/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#9A5A12",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

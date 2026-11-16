@@ -1,0 +1,54 @@
+{
+  "order": false,
+  "user": false,
+  "description": {
+    "tr": "Ova Birlik Kooperatifi: Birecik’te 214 üretici ailenin fıstık, zeytin, bal, pekmez ve buğdayı. Mevsim takvimi, üyelik ve toplu satış. Demo site; içerik kurgusaldır.",
+    "en": "Ova Birlik Cooperative: pistachios, olives, honey, molasses and wheat from 214 farming families in Birecik. Season calendar, membership and bulk sales. Demo site; content is fictional.",
+    "ar": "تعاونية أوفا بيرليك: فستق وزيتون وعسل ودبس وقمح من 214 أسرة منتجة في بيره جك. تقويم المواسم والعضوية والبيع بالجملة. موقع تجريبي؛ المحتوى افتراضي."
+  },
+  "keyword": {
+    "tr": "tarım kooperatifi, antep fıstığı, zeytin, bal, pekmez, hasat takvimi, birecik",
+    "en": "farming cooperative, pistachio, olive, honey, molasses, harvest calendar, birecik",
+    "ar": "تعاونية زراعية، فستق حلبي، زيتون، عسل، دبس، تقويم الحصاد، بيره جك"
+  },
+  "category": "Kurumsal",
+  "name": "Ova Birlik",
+  "domain": "tarim-2.webyapar.com",
+  "langs": {
+    "tr": true,
+    "en": true,
+    "ar": true,
+    "de": false,
+    "ru": false,
+    "es": false,
+    "fr": false,
+    "it": false,
+    "ja": false,
+    "zh": false,
+    "ko": false,
+    "pt": false
+  },
+  "logo": "logo.png",
+  "multi": false,
+  "publishMode": "static",
+  "font": {
+    "body": "open-sans",
+    "heading": "fraunces",
+    "ar": {
+      "body": "ibm-plex-sans-arabic",
+      "heading": "noto-kufi-arabic"
+    }
+  },
+  "colorScheme": "auto",
+  "theme_color": "#9A5A12",
+  "seo": {
+    "noindex": true
+  },
+  "cssTokens": {
+    "--mx-radius-sm": "11px",
+    "--mx-radius-md": "18px",
+    "--mx-radius-lg": "25px",
+    "--mx-radius-xl": "34px"
+  },
+  "icon": "icon.png"
+}
