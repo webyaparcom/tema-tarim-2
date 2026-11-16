@@ -1,0 +1,89 @@
+{
+  "data": [
+    {
+      "id": "87hgxqn2b7",
+      "name": {
+        "tr": "Takvim",
+        "en": "Calendar",
+        "ar": "التقويم"
+      },
+      "description": {
+        "tr": "Ürünlerin mevsim takvimi ve bahçeden depoya kareler.",
+        "en": "The crops’ season calendar and frames from orchard to store.",
+        "ar": "تقويم مواسم المحاصيل ولقطات من البستان إلى المستودع."
+      },
+      "path": "hizmetler",
+      "icon": "work",
+      "category": "",
+      "status": "play",
+      "desing": {
+        "header": [],
+        "body": [
+          "vkcr9e",
+          "7msrsj",
+          "nne3k0"
+        ],
+        "footer": []
+      },
+      "index": 0
+    },
+    {
+      "name": {
+        "tr": "Kooperatif",
+        "en": "Cooperative",
+        "ar": "التعاونية"
+      },
+      "status": "play",
+      "id": "hakkimizda",
+      "path": "hakkimizda",
+      "category": "",
+      "url": "",
+      "index": 1,
+      "icon": "info",
+      "desing": {
+        "header": [],
+        "body": [
+          "1diofd",
+          "q1qd2j",
+          "fijy86"
+        ],
+        "footer": []
+      },
+      "pathnext": "",
+      "description": {
+        "tr": "Değerler, üyelik basamakları ve bu sezonun sayıları (kurgusal).",
+        "en": "Values, membership steps and this season’s figures (fictional).",
+        "ar": "القيم ودرجات العضوية وأرقام هذا الموسم (افتراضي)."
+      }
+    },
+    {
+      "name": {
+        "tr": "İletişim",
+        "en": "Contact",
+        "ar": "اتصل بنا"
+      },
+      "status": "play",
+      "id": "iletisim",
+      "path": "iletisim",
+      "category": "",
+      "url": "",
+      "index": 2,
+      "icon": "call",
+      "desing": {
+        "header": [],
+        "body": [
+          "vqljki",
+          "k8mp01"
+        ],
+        "footer": []
+      },
+      "pathnext": "",
+      "description": {
+        "tr": "Not formu, adres ve kooperatif saatleri.",
+        "en": "Note form, address and cooperative hours.",
+        "ar": "نموذج الملاحظة والعنوان وساعات التعاونية."
+      }
+    }
+  ],
+  "desc": []
+}

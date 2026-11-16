@@ -1,0 +1,51 @@
+{
+  "name": "Değer Katman Kesit — derinlik cetvelli üst üste katmanlar",
+  "description": "Değerler bir toprak/ürün kesitinin katmanları: her katmanın başında derinleştikçe koyulaşan dokulu bant (tane deseni), ortada ikon + başlık + açıklama, sonda katman adı (etiket). Yanda derinlik cetveli; sayfa kaydıkça cetveldeki imleç kesit boyunca aşağı iner. Katmana gelince doku kayar, katman öne çıkar. deger-numara-serit ve deger-tablo eşit satırlardır, deger-yapiskan-yigin kartları üst üste bindirir; bu modülde satırlar tek bir kesitin bitişik katmanlarıdır — sıraya göre koyulaşan doku bandı ve kaydırma ilerlemesine bağlı derinlik cetveli iskeleti ailede tek. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "layers",
+  "category": "values",
+  "subCategory": "strata",
+  "tags": [
+    "values",
+    "strata",
+    "layers",
+    "depth",
+    "scroll-progress",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-surface, #f6f7f9)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 70%, var(--mx-site-surface, #f6f7f9))",
+    "kartBg": "var(--mx-site-bg, #ffffff)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-surface, #f6f7f9)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "ikon": "Material Symbols adı",
+      "baslik": "dil sözlüğü (zorunlu)",
+      "metin": "dil sözlüğü",
+      "etiket": "dil sözlüğü (küçük üst etiket)",
+      "img": "görsel yolu (destekleyen yerleşimde)",
+      "url": "iç/dış bağlantı (kartın tamamı tıklanır)"
+    }
+  }
+}

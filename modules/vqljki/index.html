@@ -1,0 +1,171 @@
+<section class="modulex-iletisim-not-kagidi-form{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-iletisim-not-kagidi-form-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* iletisim-not-kagidi-form — iletisim-minimal-form alanları sade alt çizgiye indirger, iletisim-zarf formu zarfa koyar; bu modül DEFTER nesnesi: radial-gradient spiral teller, ::before kenar boşluğu çizgisi (mantıksal konum), 32px satır ızgarasına oturan textarea ve bantlı (::before) dizin kartı. */
+  .modulex-iletisim-not-kagidi-form { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-iletisim-not-kagidi-form *, .modulex-iletisim-not-kagidi-form *::before, .modulex-iletisim-not-kagidi-form *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-iletisim-not-kagidi-form :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-iletisim-not-kagidi-form :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-iletisim-not-kagidi-form :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-iletisim-not-kagidi-form :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-iletisim-not-kagidi-form img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-iletisim-not-kagidi-form) img { height: auto; }
+  .modulex-iletisim-not-kagidi-form [hidden] { display: none !important; }
+  .modulex-iletisim-not-kagidi-form :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-iletisim-not-kagidi-form :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-iletisim-not-kagidi-form-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-iletisim-not-kagidi-form-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-iletisim-not-kagidi-form--bassiz .modulex-iletisim-not-kagidi-form-bas { display: none; }
+  .modulex-iletisim-not-kagidi-form-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-iletisim-not-kagidi-form-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-iletisim-not-kagidi-form-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-iletisim-not-kagidi-form-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-iletisim-not-kagidi-form-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-iletisim-not-kagidi-form-dugme:hover { transform: translateY(-2px); }
+  .modulex-iletisim-not-kagidi-form-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-iletisim-not-kagidi-form-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-iletisim-not-kagidi-form-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-iletisim-not-kagidi-form-masa4 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.7fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .modulex-iletisim-not-kagidi-form-defter { position: relative; min-width: 0; filter: drop-shadow(0 24px 30px color-mix(in srgb, --text-- 16%, transparent)); }
+  .modulex-iletisim-not-kagidi-form-spiral { display: block; block-size: 30px; margin-inline: 22px; background-image: radial-gradient(circle at 50% 70%, transparent 0 5px, color-mix(in srgb, --text-- 55%, --bg--) 5.5px 8px, transparent 8.5px); background-size: 34px 30px; background-repeat: repeat-x; }
+  .modulex-iletisim-not-kagidi-form-sayfa { position: relative; display: grid; gap: 14px; margin-block-start: -12px; padding-block: 40px clamp(28px, 4vw, 44px); padding-inline: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 44px); border-radius: 6px; background-color: --kartBg--; background-image: repeating-linear-gradient(to bottom, transparent 0 31px, color-mix(in srgb, --accent-- 22%, transparent) 31px 32px); background-position: 0 8px; }
+  .modulex-iletisim-not-kagidi-form-sayfa::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: clamp(46px, 6vw, 72px); inline-size: 2px; background: color-mix(in srgb, --accent-- 70%, transparent); }
+  .modulex-iletisim-not-kagidi-form-elyazi { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.9rem, 4vw, 2.9rem); font-style: italic; font-weight: 700; line-height: 1.15; transform: rotate(-1.2deg); transform-origin: center; }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-metin { line-height: 32px; }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-form { margin-block-start: 6px; }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-girdi { min-height: 40px; padding: 4px 2px; border: 0; border-block-end: 1.5px solid color-mix(in srgb, --text-- 40%, transparent); border-radius: 0; background: transparent; font-size: 1.05rem; }
+  .modulex-iletisim-not-kagidi-form-sayfa textarea.modulex-iletisim-not-kagidi-form-girdi { min-height: 160px; padding-block: 0; border-block-end: 0; line-height: 32px; background-image: repeating-linear-gradient(to bottom, transparent 0 31px, color-mix(in srgb, --text-- 40%, transparent) 31px 32px); }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-girdi:focus { border-block-end-color: --accent--; box-shadow: none; background-color: color-mix(in srgb, --accent-- 6%, transparent); }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-etiket { color: --muted--; font-size: 0.85rem; font-style: italic; }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-gonder { border-radius: 6px; transform: rotate(-1deg); }
+  .modulex-iletisim-not-kagidi-form-sayfa .modulex-iletisim-not-kagidi-form-gonder:hover { transform: rotate(0) translateY(-2px); }
+  .modulex-iletisim-not-kagidi-form-dizin { position: relative; display: grid; gap: 16px; margin-block-start: 48px; padding: 30px 22px 22px; background: --bg--; box-shadow: 0 14px 30px -18px color-mix(in srgb, --text-- 50%, transparent), 0 0 0 1px --cizgi--; transform: rotate(1.5deg); transition: transform 0.35s ease; }
+  .modulex-iletisim-not-kagidi-form-dizin:hover { transform: rotate(0); }
+  .modulex-iletisim-not-kagidi-form-dizin::before { content: ""; position: absolute; inset-block-start: -14px; inset-inline-start: calc(50% - 56px); inline-size: 112px; block-size: 28px; background: color-mix(in srgb, --accent-- 28%, transparent); transform: rotate(-4deg); }
+  .modulex-iletisim-not-kagidi-form-dliste { display: grid; gap: 4px; }
+  .modulex-iletisim-not-kagidi-form-dsat { display: grid; gap: 2px; min-width: 0; padding-block: 10px; border-block-end: 1px solid color-mix(in srgb, --accent-- 30%, transparent); }
+  .modulex-iletisim-not-kagidi-form-dsat:last-child { border-block-end: 0; }
+  @media (max-width: 1024px) {
+    .modulex-iletisim-not-kagidi-form-masa4 { grid-template-columns: minmax(0, 1fr); }
+    .modulex-iletisim-not-kagidi-form-dizin { margin-block-start: 8px; }
+  }
+  @media (max-width: 768px) {
+    .modulex-iletisim-not-kagidi-form-sayfa { padding-inline: 44px 16px; }
+    .modulex-iletisim-not-kagidi-form-sayfa::before { inset-inline-start: 30px; }
+    .modulex-iletisim-not-kagidi-form-spiral { margin-inline: 10px; }
+    .modulex-iletisim-not-kagidi-form-dizin { transform: none; }
+  }
+  .modulex-iletisim-not-kagidi-form-kikon { flex: none; display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: color-mix(in srgb, --accent-- 14%, transparent); color: --accentInk--; font-size: 24px; }
+  .modulex-iletisim-not-kagidi-form-ketiket { display: block; color: --muted--; font-size: 0.82rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; }
+  .modulex-iletisim-not-kagidi-form-deger { color: inherit; font-weight: 650; text-decoration: none; overflow-wrap: anywhere; transition: color 0.2s ease; }
+  a.modulex-iletisim-not-kagidi-form-deger:hover { color: --accentInk--; text-decoration: underline; text-underline-offset: 4px; }
+  .modulex-iletisim-not-kagidi-form-eylem { display: inline-flex; align-items: center; gap: 6px; color: --accentInk--; font-weight: 700; text-decoration: none; transition: gap 0.2s ease; }
+  .modulex-iletisim-not-kagidi-form-eylem:hover { gap: 10px; }
+  .modulex-iletisim-not-kagidi-form-eylem .material-symbols-outlined { font-size: 18px; }
+  .modulex-iletisim-not-kagidi-form-kopya { display: none; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid --cizgi--; border-radius: 999px; background: transparent; color: --text--; font: inherit; font-size: 0.85rem; font-weight: 650; transition: border-color 0.2s ease, background 0.2s ease; }
+  .modulex-iletisim-not-kagidi-form--kjs .modulex-iletisim-not-kagidi-form-kopya { display: inline-flex; }
+  .modulex-iletisim-not-kagidi-form-kopya:hover { border-color: --accent--; }
+  .modulex-iletisim-not-kagidi-form-kopya .material-symbols-outlined { font-size: 18px; }
+  .modulex-iletisim-not-kagidi-form--kopyalandi { background: color-mix(in srgb, --accent-- 14%, transparent); }
+  .modulex-iletisim-not-kagidi-form-sosyal { display: grid; gap: 10px; }
+  .modulex-iletisim-not-kagidi-form-sbaslik { color: --muted--; font-size: 0.9rem; font-weight: 650; }
+  .modulex-iletisim-not-kagidi-form-sliste { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modulex-iletisim-not-kagidi-form-cip { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 14px; border: 1px solid --cizgi--; border-radius: 999px; color: inherit; font-weight: 650; text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .modulex-iletisim-not-kagidi-form-cip:hover { border-color: --accent--; transform: translateY(-2px); }
+  .modulex-iletisim-not-kagidi-form-cikon { font-size: 18px; }
+  .modulex-iletisim-not-kagidi-form-harita { position: relative; overflow: hidden; min-height: 280px; border-radius: --yuvarlak--; background: --kartBg--; }
+  .modulex-iletisim-not-kagidi-form-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .modulex-iletisim-not-kagidi-form-hdesen { position: absolute; inset: 0; display: grid; place-items: center; background-color: color-mix(in srgb, --accent-- 8%, --kartBg--); background-image: linear-gradient(color-mix(in srgb, --text-- 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, --text-- 7%, transparent) 1px, transparent 1px), radial-gradient(circle at 30% 40%, color-mix(in srgb, --accent-- 18%, transparent) 0 18%, transparent 19%); background-size: 36px 36px, 36px 36px, 100% 100%; }
+  .modulex-iletisim-not-kagidi-form-pin { color: --accentInk--; font-size: 56px; animation: modulex-iletisim-not-kagidi-form-zipla 2.4s ease-in-out infinite; }
+  @keyframes modulex-iletisim-not-kagidi-form-zipla { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .modulex-iletisim-not-kagidi-form-hyol { position: absolute; inset-block-end: 16px; inset-inline-start: 16px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 999px; background: --bg--; color: --text--; font-weight: 700; text-decoration: none; box-shadow: 0 6px 20px color-mix(in srgb, --text-- 16%, transparent); transition: transform 0.2s ease; }
+  .modulex-iletisim-not-kagidi-form-hyol:hover { transform: translateY(-2px); }
+  .modulex-iletisim-not-kagidi-form-hyol .material-symbols-outlined { font-size: 18px; color: --accentInk--; }
+
+  .modulex-iletisim-not-kagidi-form-form { display: grid; gap: 18px; }
+  .modulex-iletisim-not-kagidi-form-fbaslik { font-size: 1.3rem; font-weight: 750; }
+  .modulex-iletisim-not-kagidi-form-alanlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .modulex-iletisim-not-kagidi-form-alan { display: flex; flex-direction: column-reverse; gap: 6px; }
+  .modulex-iletisim-not-kagidi-form-alan--genis { grid-column: 1 / -1; }
+  .modulex-iletisim-not-kagidi-form-etiket { font-size: 0.9rem; font-weight: 650; }
+  .modulex-iletisim-not-kagidi-form-girdi { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 26%, transparent); border-radius: 12px; background: color-mix(in srgb, currentColor 4%, transparent); color: inherit; font: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+  textarea.modulex-iletisim-not-kagidi-form-girdi { min-height: 132px; resize: vertical; }
+  .modulex-iletisim-not-kagidi-form-girdi:focus { outline: none; border-color: --accent--; box-shadow: 0 0 0 3px color-mix(in srgb, --accent-- 28%, transparent); }
+  .modulex-iletisim-not-kagidi-form-secim { cursor: pointer; }
+  .modulex-iletisim-not-kagidi-form-secim option { background: --bg--; color: --text--; }
+  .modulex-iletisim-not-kagidi-form-onay { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; }
+  .modulex-iletisim-not-kagidi-form-onay input { flex: none; width: 20px; height: 20px; margin-block-start: 2px; accent-color: --accent--; cursor: pointer; }
+  .modulex-iletisim-not-kagidi-form-onay a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+  .modulex-iletisim-not-kagidi-form-gonder { justify-self: start; font: inherit; font-weight: 700; cursor: pointer; }
+  .modulex-iletisim-not-kagidi-form-gonder:disabled { opacity: 0.6; cursor: progress; }
+  .modulex-iletisim-not-kagidi-form-durum { min-height: 1.5em; font-size: 0.95rem; font-weight: 650; }
+  .modulex-iletisim-not-kagidi-form-durum:empty { display: none; }
+  .modulex-iletisim-not-kagidi-form-durum--hata { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .modulex-iletisim-not-kagidi-form-bal { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  @media (max-width: 768px) {
+    .modulex-iletisim-not-kagidi-form-alanlar { grid-template-columns: minmax(0, 1fr); }
+    .modulex-iletisim-not-kagidi-form-gonder { justify-self: stretch; justify-content: center; }
+  }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-iletisim-not-kagidi-form :is(.modulex-iletisim-not-kagidi-form-baslik, .modulex-iletisim-not-kagidi-form-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-iletisim-not-kagidi-form-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-iletisim-not-kagidi-form { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-iletisim-not-kagidi-form *, .modulex-iletisim-not-kagidi-form *::before, .modulex-iletisim-not-kagidi-form *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-iletisim-not-kagidi-form";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const form = (s, P) => {
+        s.querySelectorAll("form[data-fb-form]").forEach((f) => {
+          const durum = f.querySelector("[role=status]");
+          const yaz = (m, hata) => { if (durum) { durum.textContent = m || ""; durum.classList.toggle(P + "-durum--hata", !!hata); } };
+          let t0 = Date.now();
+          const al = (ad) => { const e = f.elements.namedItem(ad); return e && "value" in e ? String(e.value).trim() : ""; };
+          const etiket = (ad) => { const e = f.elements.namedItem(ad); const l = e && e.id ? f.querySelector(`label[for="${e.id}"]`) : null; return l ? l.textContent.trim() : ad; };
+          const konuMetin = () => { const e = f.elements.namedItem("topic"); return e && e.selectedIndex > 0 ? e.options[e.selectedIndex].text.trim() : ""; };
+          f.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!f.checkValidity()) { f.reportValidity(); return; }
+            if (al("website")) return;
+            const govde = ["name", "email", "phone"].filter(al).map((k) => `${etiket(k)}: ${al(k)}`)
+              .concat(konuMetin() ? [`${etiket("topic")}: ${konuMetin()}`] : [], al("message") ? ["", al("message")] : []).join("\n");
+            const d = f.dataset;
+            if (d.action) {
+              const b = f.querySelector("[type=submit]");
+              if (b) b.disabled = true;
+              const yuk = { name: al("name"), email: al("email"), phone: al("phone"), topic: konuMetin(), message: al("message"), kvkk: true, lang: document.documentElement.lang || "", page: location.pathname, website: al("website"), t: Date.now() - t0 };
+              fetch(d.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(yuk) })
+                .then((r) => r.json().catch(() => ({})).then((j) => r.ok && j && j.ok !== false))
+                .then((ok) => { if (b) b.disabled = false; yaz(ok ? d.ok : d.hata, !ok); if (ok) { f.reset(); t0 = Date.now(); } })
+                .catch(() => { if (b) b.disabled = false; yaz(d.hata, true); });
+              return;
+            }
+            if (d.gonderim === "whatsapp" && d.wa) { window.open(`https://wa.me/${d.wa}?text=${encodeURIComponent(govde)}`, "_blank", "noopener"); return; }
+            if (d.eposta) {
+              const konu = [d.konu || "", konuMetin()].filter(Boolean).join(" - ");
+              location.href = `mailto:${d.eposta}?subject=${encodeURIComponent(konu)}&body=${encodeURIComponent(govde.replace(/\n/g, "\r\n"))}`;
+            }
+          });
+        });
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      form(s, P, az);
+    });
+  })();
+</script>

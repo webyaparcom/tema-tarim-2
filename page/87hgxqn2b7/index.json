@@ -1,0 +1,41 @@
+{
+  "id": "87hgxqn2b7",
+  "name": {
+    "tr": "Takvim",
+    "en": "Calendar",
+    "ar": "التقويم"
+  },
+  "description": {
+    "tr": "Ürünlerin mevsim takvimi ve bahçeden depoya kareler.",
+    "en": "The crops’ season calendar and frames from orchard to store.",
+    "ar": "تقويم مواسم المحاصيل ولقطات من البستان إلى المستودع."
+  },
+  "keyword": {
+    "tr": "Ürünler",
+    "en": "Produce",
+    "ar": "المنتجات"
+  },
+  "path": "hizmetler",
+  "icon": "work",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "vkcr9e",
+      "7msrsj",
+      "nne3k0"
+    ],
+    "footer": []
+  },
+  "index": 0,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Takvim",
+    "en": "Calendar",
+    "ar": "التقويم"
+  },
+  "date": "2026-11-16T18:11:31.158Z",
+  "update": "2026-11-16T18:15:02.649Z"
+}

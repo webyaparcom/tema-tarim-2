@@ -1,0 +1,121 @@
+<section class="modulex-acilis-hasat-takvim{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-acilis-hasat-takvim-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* acilis-hasat-takvim — acilis-istatistik-serit ve acilis-sayi-sutunu maddeleri sayı olarak dizer, cagri-hasat-takvim çağrı bandıdır; bu modül maddeleri 12 sütunlu bir gantt çizelgesine yerleştirir (ay aralığı → grid-column), ay adları sunucuda Intl ile basılır, içinde bulunulan ay istemcide işaretlenir. */
+  .modulex-acilis-hasat-takvim { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-acilis-hasat-takvim *, .modulex-acilis-hasat-takvim *::before, .modulex-acilis-hasat-takvim *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-acilis-hasat-takvim :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-acilis-hasat-takvim :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-acilis-hasat-takvim :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-acilis-hasat-takvim :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-acilis-hasat-takvim img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-acilis-hasat-takvim) img { height: auto; }
+  .modulex-acilis-hasat-takvim [hidden] { display: none !important; }
+  .modulex-acilis-hasat-takvim :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-acilis-hasat-takvim :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-acilis-hasat-takvim-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-acilis-hasat-takvim-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-acilis-hasat-takvim--bassiz .modulex-acilis-hasat-takvim-bas { display: none; }
+  .modulex-acilis-hasat-takvim-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-acilis-hasat-takvim-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-acilis-hasat-takvim-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-acilis-hasat-takvim-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-acilis-hasat-takvim-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-acilis-hasat-takvim-dugme:hover { transform: translateY(-2px); }
+  .modulex-acilis-hasat-takvim-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-acilis-hasat-takvim-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-acilis-hasat-takvim-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-acilis-hasat-takvim-ust2 { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 5vw, 72px); align-items: end; }
+  .modulex-acilis-hasat-takvim-ust2:not(:has(.modulex-acilis-hasat-takvim-kemer)) { grid-template-columns: minmax(0, 1fr); max-width: 820px; }
+  .modulex-acilis-hasat-takvim-yazi { display: grid; gap: 20px; justify-items: start; min-width: 0; padding-block-end: clamp(0px, 2vw, 24px); }
+  .modulex-acilis-hasat-takvim-kemer { margin: 0; overflow: hidden; border-radius: 999px 999px --yuvarlak-- --yuvarlak--; box-shadow: 0 0 0 10px --kartBg--, 0 0 0 11px --cizgi--; }
+  .modulex-acilis-hasat-takvim-kfoto { inline-size: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform 0.8s ease; }
+  .modulex-acilis-hasat-takvim-kemer:hover .modulex-acilis-hasat-takvim-kfoto { transform: scale(1.04); }
+  .modulex-acilis-hasat-takvim-cizelge { margin-block-start: clamp(32px, 5vw, 56px); padding: clamp(16px, 2.4vw, 28px); border: 1px solid --cizgi--; border-radius: --yuvarlak--; background-color: --kartBg--; }
+  .modulex-acilis-hasat-takvim-aylar, .modulex-acilis-hasat-takvim-urun { display: grid; grid-template-columns: minmax(150px, 0.9fr) minmax(0, 3fr); column-gap: 16px; }
+  .modulex-acilis-hasat-takvim-aylar { padding-block-end: 10px; border-block-end: 1px solid --cizgi--; }
+  .modulex-acilis-hasat-takvim-aylar > .modulex-acilis-hasat-takvim-ay { color: --muted--; font-size: 0.78rem; font-weight: 750; text-align: center; text-transform: uppercase; transition: color 0.3s ease; }
+  .modulex-acilis-hasat-takvim-aylar { grid-template-columns: minmax(150px, 0.9fr) repeat(12, minmax(0, 0.25fr)); }
+  .modulex-acilis-hasat-takvim-adar { display: none; }
+  .modulex-acilis-hasat-takvim-ay--simdi { color: --accentInk--; }
+  .modulex-acilis-hasat-takvim-ay--simdi .modulex-acilis-hasat-takvim-akisa { padding: 2px 6px; border-radius: 6px; background-color: --accent--; color: --accentText--; }
+  .modulex-acilis-hasat-takvim-urunler { display: grid; }
+  .modulex-acilis-hasat-takvim-urun { align-items: center; padding-block: 12px; border-block-end: 1px dashed --cizgi--; }
+  .modulex-acilis-hasat-takvim-urun:last-child { border-block-end: 0; }
+  .modulex-acilis-hasat-takvim-uad { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .modulex-acilis-hasat-takvim-uikon { display: inline-grid; flex: none; place-items: center; inline-size: 38px; block-size: 38px; border-radius: 50%; background-color: color-mix(in srgb, --accent-- 14%, transparent); color: --accentInk--; font-size: 20px; }
+  .modulex-acilis-hasat-takvim-uyazi { display: grid; min-width: 0; }
+  .modulex-acilis-hasat-takvim-umetin { font-weight: 700; line-height: 1.3; }
+  .modulex-acilis-hasat-takvim-ualt { display: flex; flex-wrap: wrap; gap: 2px 10px; color: --muted--; font-size: 0.82rem; }
+  .modulex-acilis-hasat-takvim-udeger { color: --text--; font-weight: 800; }
+  .modulex-acilis-hasat-takvim-ayl { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; block-size: 30px; border-radius: 8px; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 12 - 1px), --cizgi-- calc(100% / 12 - 1px) calc(100% / 12)); }
+  .modulex-acilis-hasat-takvim-bar { grid-row: 1; block-size: 16px; border-radius: 999px; background-color: color-mix(in srgb, --accent-- 55%, --kartBg--); transform-origin: 0 50%; animation: modulex-acilis-hasat-takvim-uza 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; transition: background-color 0.3s ease; }
+  [dir="rtl"] .modulex-acilis-hasat-takvim-bar { transform-origin: 100% 50%; }
+  @keyframes modulex-acilis-hasat-takvim-uza { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .modulex-acilis-hasat-takvim-urun:hover .modulex-acilis-hasat-takvim-bar, .modulex-acilis-hasat-takvim-bar--simdi { background-color: --accent--; }
+  .modulex-acilis-hasat-takvim-bar--simdi { box-shadow: 0 0 0 3px color-mix(in srgb, --accent-- 28%, transparent); }
+  .modulex-acilis-hasat-takvim-cizelge--duz .modulex-acilis-hasat-takvim-urunler { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; }
+  .modulex-acilis-hasat-takvim-cizelge--duz .modulex-acilis-hasat-takvim-urun { grid-template-columns: minmax(0, 1fr); border-block-end: 0; }
+  .modulex-acilis-hasat-takvim-cizelge--duz .modulex-acilis-hasat-takvim-ayl { display: none; }
+  @media (max-width: 1024px) {
+    .modulex-acilis-hasat-takvim-ust2 { grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr); }
+  }
+  @media (max-width: 768px) {
+    .modulex-acilis-hasat-takvim-ust2 { grid-template-columns: minmax(0, 1fr); }
+    .modulex-acilis-hasat-takvim-kemer { max-inline-size: 300px; }
+    .modulex-acilis-hasat-takvim-aylar { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .modulex-acilis-hasat-takvim-aylar > .modulex-acilis-hasat-takvim-bos { display: none; }
+    .modulex-acilis-hasat-takvim-akisa { display: none; }
+    .modulex-acilis-hasat-takvim-adar { display: inline; }
+    .modulex-acilis-hasat-takvim-urun { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+    .modulex-acilis-hasat-takvim-cizelge { padding: 14px; }
+  }
+  .modulex-acilis-hasat-takvim-h1 { font-family: var(--mx-font-heading, inherit); font-size: clamp(2.3rem, 5.2vw, 4.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
+  .modulex-acilis-hasat-takvim-metin { color: --muted--; font-size: clamp(1.02rem, 1.3vw, 1.18rem); line-height: 1.7; max-width: 62ch; }
+  .modulex-acilis-hasat-takvim-ogeler { display: flex; flex-wrap: wrap; gap: 14px 30px; }
+  .modulex-acilis-hasat-takvim-oge { display: flex; align-items: center; gap: 10px; }
+  .modulex-acilis-hasat-takvim-oikon { color: --accentInk--; font-size: 22px; }
+  .modulex-acilis-hasat-takvim-odeger { font-size: 1.45rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+  .modulex-acilis-hasat-takvim-ometin { color: --muted--; font-size: 0.95rem; }
+  .modulex-acilis-hasat-takvim-obag { color: inherit; text-underline-offset: 3px; }
+  .modulex-acilis-hasat-takvim-gir { animation: modulex-acilis-hasat-takvim-gir 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes modulex-acilis-hasat-takvim-gir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-hasat-takvim-h1 { letter-spacing: 0; line-height: 1.3; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-hasat-takvim :is(.modulex-acilis-hasat-takvim-baslik, .modulex-acilis-hasat-takvim-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-acilis-hasat-takvim-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-acilis-hasat-takvim { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-acilis-hasat-takvim *, .modulex-acilis-hasat-takvim *::before, .modulex-acilis-hasat-takvim *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-acilis-hasat-takvim";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const ayIsik = (s, P) => {
+        const m = new Date().getMonth() + 1;
+        const h = s.querySelector('[data-ay="' + m + '"]');
+        if (h) h.classList.add(P + "-ay--simdi");
+        s.querySelectorAll("[data-s][data-e]").forEach((b) => {
+          if (Number(b.dataset.s) <= m && m <= Number(b.dataset.e)) b.classList.add(P + "-bar--simdi");
+        });
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      ayIsik(s, P, az);
+    });
+  })();
+</script>

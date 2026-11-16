@@ -1,0 +1,110 @@
+<section class="modulex-cagri-abone-bulten{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-cagri-abone-bulten-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* cagri-abone-bulten — Ailede e-posta toplayan çağrı yok; bu modül gazete/bülten künyesi iskeletiyle (çift çizgi, manşet, sütunlu metin, sayı içeriği) aboneliğe çağırır — giriş alanı ve düğme tek kapsül satır, mailto ile sunucusuz çalışır. */
+  .modulex-cagri-abone-bulten { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --yaziRenk--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-cagri-abone-bulten *, .modulex-cagri-abone-bulten *::before, .modulex-cagri-abone-bulten *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-cagri-abone-bulten :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-cagri-abone-bulten :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-cagri-abone-bulten :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-cagri-abone-bulten :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-cagri-abone-bulten img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-cagri-abone-bulten) img { height: auto; }
+  .modulex-cagri-abone-bulten [hidden] { display: none !important; }
+  .modulex-cagri-abone-bulten :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-cagri-abone-bulten :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-cagri-abone-bulten-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-cagri-abone-bulten-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-cagri-abone-bulten--bassiz .modulex-cagri-abone-bulten-bas { display: none; }
+  .modulex-cagri-abone-bulten-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-cagri-abone-bulten-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-cagri-abone-bulten-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-cagri-abone-bulten-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-cagri-abone-bulten-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-cagri-abone-bulten-dugme:hover { transform: translateY(-2px); }
+  .modulex-cagri-abone-bulten-dugme--ikincil { background: transparent; color: --yaziRenk--; border-color: --cizgi--; }
+  .modulex-cagri-abone-bulten-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-cagri-abone-bulten-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-cagri-abone-bulten-gazete { display: grid; gap: clamp(18px, 3vw, 28px); padding-block: 20px; border-block: 6px double --yaziRenk--; }
+  .modulex-cagri-abone-bulten-kunye { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding-block-end: 12px; border-block-end: 1px solid --cizgi--; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .modulex-cagri-abone-bulten-kust { color: --accentInk--; }
+  .modulex-cagri-abone-bulten-ksik { display: inline-flex; align-items: center; gap: 6px; color: --muted--; }
+  .modulex-cagri-abone-bulten-skon { font-size: 18px; }
+  .modulex-cagri-abone-bulten-manset { font-family: var(--mx-font-heading, Georgia, serif); font-size: clamp(2.2rem, 6vw, 4.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; text-align: center; transition: letter-spacing 0.6s ease; }
+  .modulex-cagri-abone-bulten-gazete:hover .modulex-cagri-abone-bulten-manset { letter-spacing: -0.02em; }
+  .modulex-cagri-abone-bulten-sutunlar { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); }
+  .modulex-cagri-abone-bulten-sutunlar--tek { grid-template-columns: minmax(0, 1fr); }
+  .modulex-cagri-abone-bulten-kolon { color: --muted--; font-size: 1.05rem; line-height: 1.75; columns: 2 220px; column-gap: 32px; column-rule: 1px solid --cizgi--; }
+  .modulex-cagri-abone-bulten-icerik { display: grid; align-content: start; gap: 10px; padding-inline-start: clamp(16px, 3vw, 32px); border-inline-start: 1px solid --cizgi--; }
+  .modulex-cagri-abone-bulten-icad { color: --accentInk--; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+  .modulex-cagri-abone-bulten-basliklar { display: grid; gap: 12px; }
+  .modulex-cagri-abone-bulten-hab { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; font-weight: 650; line-height: 1.35; transition: color 0.2s ease; }
+  .modulex-cagri-abone-bulten-hab:hover { color: --accentInk--; }
+  .modulex-cagri-abone-bulten-hab small { color: --muted--; font-weight: 500; }
+  .modulex-cagri-abone-bulten-hno { color: --accentInk--; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .modulex-cagri-abone-bulten-abone { display: grid; justify-items: center; gap: 10px; padding-block-start: 18px; border-block-start: 1px solid --cizgi--; }
+  .modulex-cagri-abone-bulten-form { display: grid; gap: 8px; width: min(100%, 560px); }
+  .modulex-cagri-abone-bulten-flabel { color: --muted--; font-size: 0.85rem; font-weight: 700; }
+  .modulex-cagri-abone-bulten-fsatir { display: flex; gap: 6px; padding: 6px; border: 2px solid --yaziRenk--; border-radius: 999px; background: --bg--; transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+  .modulex-cagri-abone-bulten-fsatir:focus-within { border-color: --accent--; box-shadow: 0 0 0 4px color-mix(in srgb, --accent-- 22%, transparent); }
+  .modulex-cagri-abone-bulten-fgir { flex: 1; min-width: 0; padding: 10px 16px; border: 0; background: transparent; color: --yaziRenk--; font: inherit; outline: none; }
+  .modulex-cagri-abone-bulten-fgonder { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: none; min-height: 46px; padding: 10px 22px; border: 0; border-radius: 999px; background: --accent--; color: --accentText--; font: inherit; font-weight: 750; transition: transform 0.25s ease; }
+  .modulex-cagri-abone-bulten-fgonder:hover { transform: translateX(3px); }
+  [dir="rtl"] .modulex-cagri-abone-bulten-fgonder:hover { transform: translateX(-3px); }
+  @media (max-width: 768px) {
+    .modulex-cagri-abone-bulten-sutunlar { grid-template-columns: minmax(0, 1fr); }
+    .modulex-cagri-abone-bulten-icerik { padding-inline-start: 0; padding-block-start: 16px; border-inline-start: 0; border-block-start: 1px solid --cizgi--; }
+    .modulex-cagri-abone-bulten-fsatir { flex-direction: column; border-radius: 18px; }
+  }
+  .modulex-cagri-abone-bulten-wasvg { width: 1.25em; height: 1.25em; flex: none; }
+  .modulex-cagri-abone-bulten-maddeler { display: grid; gap: 12px; }
+  .modulex-cagri-abone-bulten-madde { display: flex; align-items: flex-start; gap: 12px; }
+  .modulex-cagri-abone-bulten-mikon { flex: none; color: --accentInk--; font-size: 24px; }
+  .modulex-cagri-abone-bulten-myazi { display: grid; gap: 2px; }
+  .modulex-cagri-abone-bulten-myazi strong { font-weight: 700; }
+  .modulex-cagri-abone-bulten-myazi small { color: --muted--; font-size: 0.92rem; }
+  .modulex-cagri-abone-bulten-not { color: --muted--; font-size: 0.9rem; }
+  .modulex-cagri-abone-bulten-saat { display: flex; align-items: center; gap: 8px; color: --muted--; font-size: 0.95rem; }
+  .modulex-cagri-abone-bulten-saat .material-symbols-outlined { font-size: 20px; color: --accentInk--; }
+  .modulex-cagri-abone-bulten-metin { max-width: 62ch; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-cagri-abone-bulten :is(.modulex-cagri-abone-bulten-baslik, .modulex-cagri-abone-bulten-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-cagri-abone-bulten-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-cagri-abone-bulten { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-cagri-abone-bulten *, .modulex-cagri-abone-bulten *::before, .modulex-cagri-abone-bulten *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-cagri-abone-bulten";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const bultenPosta = (s) => {
+        s.querySelectorAll("form[data-bp]").forEach((f) => {
+          f.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const g = f.querySelector("input[type=email]");
+            if (g && !g.checkValidity()) { g.reportValidity(); return; }
+            const v = g ? g.value.trim() : "";
+            location.href = `mailto:${f.dataset.bp}?subject=${encodeURIComponent(f.dataset.bpKonu || "")}&body=${encodeURIComponent(v)}`;
+          });
+        });
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      bultenPosta(s, P, az);
+    });
+  })();
+</script>

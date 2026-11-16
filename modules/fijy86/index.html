@@ -1,0 +1,115 @@
+<section class="modulex-sayac-termometre{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-sayac-termometre-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* sayac-termometre — sayac-cubuk yatay çubuk, sayac-dolgu karo dolumu, sayac-sutun-grafik ızgara üstünde sütun çizer; bu modül her rakamı kendi dikey ölçü aletine (cam tüp + hazne + çentikli cetvel) bağlar — oran bir sıcaklık/nem okuması gibi okunur, yerleşim tüp | okuma kolonu iskeletidir. */
+  .modulex-sayac-termometre { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-sayac-termometre *, .modulex-sayac-termometre *::before, .modulex-sayac-termometre *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-sayac-termometre :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-sayac-termometre :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-sayac-termometre :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-sayac-termometre :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-sayac-termometre img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-sayac-termometre) img { height: auto; }
+  .modulex-sayac-termometre [hidden] { display: none !important; }
+  .modulex-sayac-termometre :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-sayac-termometre :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-sayac-termometre-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-sayac-termometre-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-sayac-termometre--bassiz .modulex-sayac-termometre-bas { display: none; }
+  .modulex-sayac-termometre-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-sayac-termometre-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-sayac-termometre-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-sayac-termometre-bas { max-width: 780px; margin-inline: auto; text-align: center; justify-items: center; }
+  .modulex-sayac-termometre-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-sayac-termometre-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-sayac-termometre-dugme:hover { transform: translateY(-2px); }
+  .modulex-sayac-termometre-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-sayac-termometre-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-sayac-termometre-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-sayac-termometre-termometreler { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 48px 32px; }
+  .modulex-sayac-termometre-olcu { display: grid; grid-template-columns: 66px minmax(0, 1fr); gap: 20px; align-items: end; }
+  .modulex-sayac-termometre-tup { position: relative; width: 66px; height: 250px; }
+  .modulex-sayac-termometre-cetvel { position: absolute; inset-block: 14px 54px; inset-inline-start: 0; width: 13px; background: repeating-linear-gradient(to top, --muted-- 0 2px, transparent 2px 25%) 0 0 / 100% 100% no-repeat, repeating-linear-gradient(to top, --cizgi-- 0 1px, transparent 1px 5%) 0 0 / 60% 100% no-repeat; }
+  .modulex-sayac-termometre-cam { position: absolute; inset-block: 0 38px; inset-inline-start: 23px; width: 22px; overflow: hidden; border: 3px solid --cizgi--; border-block-end: 0; border-radius: 12px 12px 0 0; background: --kartBg--; }
+  .modulex-sayac-termometre-civa { position: absolute; inset-inline: 3px; inset-block-end: 0; height: calc(var(--o) * 100%); border-radius: 6px 6px 0 0; background: linear-gradient(to top, --accent--, color-mix(in srgb, --accent-- 60%, --bg--)); transition: height 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease; }
+  .modulex-sayac-termometre--hazir:not(.modulex-sayac-termometre--gor) .modulex-sayac-termometre-civa { height: 0; }
+  .modulex-sayac-termometre-hazne { position: absolute; inset-block-end: 0; inset-inline-start: 10px; width: 48px; height: 48px; border: 3px solid --cizgi--; border-radius: 50%; background: radial-gradient(circle at 35% 35%, color-mix(in srgb, --accent-- 45%, --bg--), --accent-- 65%); transition: transform 0.35s ease, box-shadow 0.35s ease; }
+  .modulex-sayac-termometre-olcu:hover .modulex-sayac-termometre-hazne { transform: scale(1.08); box-shadow: 0 0 0 8px color-mix(in srgb, --accent-- 18%, transparent); }
+  .modulex-sayac-termometre-olcu:hover .modulex-sayac-termometre-civa { filter: saturate(1.4); }
+  .modulex-sayac-termometre-okuma { display: grid; gap: 6px; padding-block-end: 10px; border-block-end: 2px solid --cizgi--; }
+  .modulex-sayac-termometre-sayi { font-size: clamp(2rem, 3.6vw, 2.8rem); font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; line-height: 1; }
+  .modulex-sayac-termometre-ek { color: --accentInk--; font-size: 0.5em; }
+  .modulex-sayac-termometre-etiket { display: flex; align-items: center; gap: 6px; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+  .modulex-sayac-termometre-ikon { color: --accentInk--; font-size: 20px; }
+  .modulex-sayac-termometre-not { color: --muted--; font-size: 0.9rem; }
+  @media (max-width: 768px) {
+    .modulex-sayac-termometre-termometreler { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 14px; }
+    .modulex-sayac-termometre-olcu { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 12px; text-align: center; }
+    .modulex-sayac-termometre-tup { height: 190px; }
+    .modulex-sayac-termometre-okuma { justify-items: center; width: 100%; }
+    .modulex-sayac-termometre-etiket { justify-content: center; }
+  }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-sayac-termometre :is(.modulex-sayac-termometre-baslik, .modulex-sayac-termometre-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-sayac-termometre-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-sayac-termometre { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-sayac-termometre *, .modulex-sayac-termometre *::before, .modulex-sayac-termometre *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-sayac-termometre";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const gozlem = (s, P, az) => {
+        const gor = () => s.classList.add(P + "--gor");
+        s.classList.add(P + "--hazir");
+        if (az || !("IntersectionObserver" in window)) { gor(); return; }
+        const io = new IntersectionObserver((gs) => {
+          gs.forEach((g) => { if (g.isIntersecting) { gor(); io.disconnect(); } });
+        }, { threshold: 0.15 });
+        io.observe(s);
+      };
+    const sayac = (s, P, az) => {
+        const el = [...s.querySelectorAll("[data-hedef]")];
+        if (!el.length || az || !("IntersectionObserver" in window)) return;
+        const dl = document.documentElement.lang || undefined;
+        const oynat = () => el.forEach((e) => {
+          const h = Number(e.dataset.hedef);
+          const od = Number(e.dataset.ondalik) || 0;
+          const son = e.textContent;
+          if (!Number.isFinite(h)) return;
+          let f;
+          try { f = new Intl.NumberFormat(dl, { minimumFractionDigits: od, maximumFractionDigits: od }); } catch (x) { return; }
+          const t0 = performance.now();
+          const adim = (t) => {
+            const p = Math.min(1, (t - t0) / 1300);
+            e.textContent = p < 1 ? f.format(h * (1 - Math.pow(1 - p, 3))) : son;
+            if (p < 1) requestAnimationFrame(adim);
+          };
+          requestAnimationFrame(adim);
+        });
+        const io = new IntersectionObserver((gs) => {
+          gs.forEach((g) => { if (g.isIntersecting) { oynat(); io.disconnect(); } });
+        }, { threshold: 0.3 });
+        io.observe(s);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      gozlem(s, P, az);
+      sayac(s, P, az);
+    });
+  })();
+</script>

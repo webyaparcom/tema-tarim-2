@@ -1,0 +1,84 @@
+<section class="modulex-galeri-yapiskan-kart{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-galeri-yapiskan-kart-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* galeri-yapiskan-kart — galeri-yigin görselleri durağan bir kolajda örtüştürür, galeri-kenar-baslik yalnız başlığı yapıştırır, galeri-numarali zikzak satırları akıp gider. Bu modülde KARTLARIN kendisi yapışkandır (artan inset-block-start, --i): kaydırma hareketi kartları üst üste toplar; mekân/hizmet turunu sahne sahne anlatır. */
+  .modulex-galeri-yapiskan-kart { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-galeri-yapiskan-kart *, .modulex-galeri-yapiskan-kart *::before, .modulex-galeri-yapiskan-kart *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-galeri-yapiskan-kart :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-galeri-yapiskan-kart :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-galeri-yapiskan-kart :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-galeri-yapiskan-kart :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-galeri-yapiskan-kart img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-galeri-yapiskan-kart) img { height: auto; }
+  .modulex-galeri-yapiskan-kart [hidden] { display: none !important; }
+  .modulex-galeri-yapiskan-kart :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-galeri-yapiskan-kart :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-galeri-yapiskan-kart-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-galeri-yapiskan-kart-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-galeri-yapiskan-kart--bassiz .modulex-galeri-yapiskan-kart-bas { display: none; }
+  .modulex-galeri-yapiskan-kart-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-galeri-yapiskan-kart-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-galeri-yapiskan-kart-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-galeri-yapiskan-kart-bas { max-width: 760px; }
+  .modulex-galeri-yapiskan-kart-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-galeri-yapiskan-kart-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-galeri-yapiskan-kart-dugme:hover { transform: translateY(-2px); }
+  .modulex-galeri-yapiskan-kart-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-galeri-yapiskan-kart-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-galeri-yapiskan-kart-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-galeri-yapiskan-kart-yigin { display: grid; gap: clamp(20px, 3vw, 30px); padding-block-end: 24px; }
+  .modulex-galeri-yapiskan-kart-kart { position: relative; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); min-height: clamp(320px, 32vw, 430px); overflow: hidden; border: 1px solid --cizgi--; border-radius: calc(--yuvarlak-- * 1.4); background: --kartBg--; box-shadow: 0 -22px 44px -34px color-mix(in srgb, --text-- 70%, transparent); transition: box-shadow 0.4s ease; }
+  .modulex-galeri-yapiskan-kart-kart:hover { box-shadow: 0 -22px 50px -30px color-mix(in srgb, --text-- 80%, transparent); }
+  .modulex-galeri-yapiskan-kart-kart:nth-child(even) .modulex-galeri-yapiskan-kart-kap { order: 2; }
+  .modulex-galeri-yapiskan-kart-kart .modulex-galeri-yapiskan-kart-kap { position: relative; min-height: 100%; overflow: hidden; }
+  .modulex-galeri-yapiskan-kart-kart .modulex-galeri-yapiskan-kart-kap .modulex-galeri-yapiskan-kart-g, .modulex-galeri-yapiskan-kart-kart .modulex-galeri-yapiskan-kart-kap .modulex-galeri-yapiskan-kart-yer { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; transition: transform 0.9s ease; }
+  .modulex-galeri-yapiskan-kart-kart:hover .modulex-galeri-yapiskan-kart-g { transform: scale(1.04); }
+  .modulex-galeri-yapiskan-kart-yazi { display: grid; align-content: center; gap: 12px; padding: clamp(24px, 4vw, 54px); }
+  .modulex-galeri-yapiskan-kart-sayac { color: --accentInk--; font-size: 0.82rem; font-weight: 750; letter-spacing: 0.1em; font-variant-numeric: tabular-nums; }
+  .modulex-galeri-yapiskan-kart-yazi .modulex-galeri-yapiskan-kart-kbaslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.5rem, 2.8vw, 2.35rem); font-weight: 750; line-height: 1.12; letter-spacing: -0.015em; }
+  .modulex-galeri-yapiskan-kart-yazi .modulex-galeri-yapiskan-kart-kmetin { max-width: 40ch; font-size: 1rem; }
+  .modulex-galeri-yapiskan-kart-yazi::after { content: ""; width: 48px; height: 3px; margin-block-start: 6px; border-radius: 3px; background: --accent--; transition: width 0.4s ease; }
+  .modulex-galeri-yapiskan-kart-kart:hover .modulex-galeri-yapiskan-kart-yazi::after { width: 96px; }
+  /* yığılma: kaydırmaya bağlı konum — yalnız hareket azaltılmamışsa ve ekran yeterince yüksekse (aksi hâlde düz liste) */
+  @media (prefers-reduced-motion: no-preference) and (min-height: 620px) {
+    .modulex-galeri-yapiskan-kart-kart { position: sticky; inset-block-start: calc(90px + var(--i) * 20px); }
+  }
+  @media (prefers-reduced-motion: no-preference) and (min-height: 620px) and (max-width: 768px) {
+    .modulex-galeri-yapiskan-kart-kart { inset-block-start: calc(70px + var(--i) * 12px); }
+  }
+  @media (max-width: 768px) {
+    .modulex-galeri-yapiskan-kart-kart { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+    .modulex-galeri-yapiskan-kart-kart:nth-child(even) .modulex-galeri-yapiskan-kart-kap { order: 0; }
+    .modulex-galeri-yapiskan-kart-kart .modulex-galeri-yapiskan-kart-kap { min-height: 0; aspect-ratio: 4 / 3; }
+    .modulex-galeri-yapiskan-kart-yazi { padding: 20px 20px 24px; }
+  }
+  .modulex-galeri-yapiskan-kart-yer { display: grid; place-items: center; width: 100%; aspect-ratio: 4 / 3; background: color-mix(in srgb, --accent-- 14%, --kartBg--); color: --accentInk--; }
+  .modulex-galeri-yapiskan-kart-yer .material-symbols-outlined { font-size: 40px; }
+  .modulex-galeri-yapiskan-kart-bag { color: inherit; text-decoration: none; }
+  .modulex-galeri-yapiskan-kart-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .modulex-galeri-yapiskan-kart-kbaslik { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+  .modulex-galeri-yapiskan-kart-kmetin { color: --muted--; font-size: 0.95rem; line-height: 1.6; }
+  .modulex-galeri-yapiskan-kart-kat { color: --accentInk--; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .modulex-galeri-yapiskan-kart-kontrol { display: flex; gap: 10px; justify-content: flex-end; margin-block-start: 18px; }
+  .modulex-galeri-yapiskan-kart-ok { display: inline-grid; place-items: center; width: 48px; height: 48px; border: 1px solid --cizgi--; border-radius: 50%; background: --kartBg--; color: --text--; transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease; }
+  .modulex-galeri-yapiskan-kart-ok:hover:not(:disabled) { background: --accent--; color: --accentText--; }
+  .modulex-galeri-yapiskan-kart-ok:disabled { opacity: 0.4; cursor: default; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-galeri-yapiskan-kart :is(.modulex-galeri-yapiskan-kart-baslik, .modulex-galeri-yapiskan-kart-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-galeri-yapiskan-kart-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-galeri-yapiskan-kart { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-galeri-yapiskan-kart *, .modulex-galeri-yapiskan-kart *::before, .modulex-galeri-yapiskan-kart *::after { animation: none !important; transition: none !important; }
+  }
+</style>

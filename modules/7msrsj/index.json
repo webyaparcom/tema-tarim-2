@@ -1,0 +1,55 @@
+{
+  "name": "Galeri Yapışkan Kart — kaydırdıkça üst üste yığılan tam genişlik kartlar",
+  "description": "Her görsel tam genişlikte yatay bir kart (geniş görsel + sıra «03 / 07», kategori, büyük ad, açıklama); kartlar position: sticky ile her biri öncekinden biraz aşağıda durur, sayfa kaydırıldıkça yenisi eskisinin üstüne kayar ve deste oluşur. Çift kartlarda görsel öbür yana geçer. Betik yok; mobilde görsel üstte; hareket azaltılınca (ya da alçak ekranda) yapışma kapanır, kartlar düz liste olarak akar. galeri-yigin görselleri durağan bir kolajda örtüştürür, galeri-kenar-baslik yalnız başlığı yapıştırır, galeri-numarali zikzak satırları akıp gider. Bu modülde KARTLARIN kendisi yapışkandır (artan inset-block-start, --i): kaydırma hareketi kartları üst üste toplar; mekân/hizmet turunu sahne sahne anlatır. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "dynamic_feed",
+  "category": "galeri",
+  "subCategory": "sticky-stack",
+  "tags": [
+    "galeri",
+    "sticky",
+    "stack",
+    "scroll",
+    "story",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "tumu": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "img": "görsel yolu (boşsa yer tutucu)",
+      "baslik": "dil sözlüğü (resim adı)",
+      "alt": "dil sözlüğü (boşsa başlık)",
+      "metin": "dil sözlüğü (kısa açıklama)",
+      "kat": "kategori kimliği (desing.cats id'si)",
+      "url": "iç/dış bağlantı",
+      "w": "görsel genişliği (px, oran için)",
+      "h": "görsel yüksekliği (px)",
+      "kucuk": "küçük görsel (varsa ızgarada bu)"
+    }
+  }
+}

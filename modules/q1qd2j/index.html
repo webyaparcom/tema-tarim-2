@@ -1,0 +1,99 @@
+<section class="modulex-surec-seviye-merdiven{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-surec-seviye-merdiven-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* surec-seviye-merdiven — surec-kaskad kartları çapraz aşağı indirir, surec-ters-sutun eşit yükseklikte sütunlardır; bu modülde basamak blokları sıra arttıkça yükselir (seviye/merdiven silueti), son basamakta ödül simgesi, giriş hareketi yükselme — ilerleme = seviye atlama metaforu. */
+  .modulex-surec-seviye-merdiven { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-surec-seviye-merdiven *, .modulex-surec-seviye-merdiven *::before, .modulex-surec-seviye-merdiven *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-surec-seviye-merdiven :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-surec-seviye-merdiven :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-surec-seviye-merdiven :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-surec-seviye-merdiven :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-surec-seviye-merdiven img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-surec-seviye-merdiven) img { height: auto; }
+  .modulex-surec-seviye-merdiven [hidden] { display: none !important; }
+  .modulex-surec-seviye-merdiven :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-surec-seviye-merdiven :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-surec-seviye-merdiven-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-surec-seviye-merdiven-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-surec-seviye-merdiven--bassiz .modulex-surec-seviye-merdiven-bas { display: none; }
+  .modulex-surec-seviye-merdiven-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-surec-seviye-merdiven-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-surec-seviye-merdiven-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-surec-seviye-merdiven-bas { max-width: 760px; }
+  .modulex-surec-seviye-merdiven-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-surec-seviye-merdiven-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-surec-seviye-merdiven-dugme:hover { transform: translateY(-2px); }
+  .modulex-surec-seviye-merdiven-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-surec-seviye-merdiven-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-surec-seviye-merdiven-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-surec-seviye-merdiven-merdiven { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-items: end; gap: 0 6px; border-block-end: 3px solid --accent--; }
+  .modulex-surec-seviye-merdiven-kat { position: relative; display: grid; align-content: end; gap: 18px; }
+  .modulex-surec-seviye-merdiven-kbilgi { display: grid; align-content: end; gap: 6px; padding-inline: 10px 14px; }
+  .modulex-surec-seviye-merdiven-kbilgi .modulex-surec-seviye-merdiven-kbaslik { font-size: 1.12rem; font-weight: 750; }
+  .modulex-surec-seviye-merdiven-kbilgi .modulex-surec-seviye-merdiven-kmetin { color: --muted--; font-size: 0.9rem; }
+  .modulex-surec-seviye-merdiven-kbilgi .modulex-surec-seviye-merdiven-sure { background: color-mix(in srgb, --accent-- 22%, transparent); }
+  .modulex-surec-seviye-merdiven-blok { position: relative; display: grid; align-content: end; justify-items: start; gap: 4px; height: calc(80px + var(--h) * 170px); padding: 14px 16px; border-radius: 12px 12px 0 0; background: color-mix(in srgb, --accent-- calc(24% + var(--h) * 76%), --bg--); color: --text--; transform-origin: bottom; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 0.14s), box-shadow 0.3s ease; }
+  .modulex-surec-seviye-merdiven-kat:last-child .modulex-surec-seviye-merdiven-blok { color: --accentText--; }
+  .modulex-surec-seviye-merdiven--hazir:not(.modulex-surec-seviye-merdiven--gor) .modulex-surec-seviye-merdiven-blok { transform: scaleY(0.12); }
+  .modulex-surec-seviye-merdiven-kat:hover .modulex-surec-seviye-merdiven-blok { box-shadow: inset 0 4px 0 --text--; }
+  .modulex-surec-seviye-merdiven-bno { font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+  .modulex-surec-seviye-merdiven-kupa { position: absolute; inset-block-start: 12px; inset-inline-end: 14px; line-height: 1; animation: modulex-surec-seviye-merdiven-salla 2.6s ease-in-out infinite; }
+  .modulex-surec-seviye-merdiven-kupa .material-symbols-outlined { font-size: 34px; }
+  @keyframes modulex-surec-seviye-merdiven-salla { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-10deg) scale(1.08); } }
+  @media (max-width: 768px) {
+    .modulex-surec-seviye-merdiven-merdiven { grid-auto-flow: row; gap: 16px; border-block-end: 0; border-inline-start: 3px solid --accent--; }
+    .modulex-surec-seviye-merdiven-kat { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .modulex-surec-seviye-merdiven-blok { order: -1; width: calc(96px + var(--h) * (100% - 96px)); height: 64px; padding: 10px 14px; border-radius: 0 12px 12px 0; align-content: center; transform-origin: center; }
+    [dir="rtl"] .modulex-surec-seviye-merdiven-blok { border-radius: 12px 0 0 12px; }
+    .modulex-surec-seviye-merdiven--hazir:not(.modulex-surec-seviye-merdiven--gor) .modulex-surec-seviye-merdiven-blok { transform: scaleY(0.3); }
+    .modulex-surec-seviye-merdiven-bno { font-size: 2rem; }
+    .modulex-surec-seviye-merdiven-kupa { inset-block-start: 50%; margin-block-start: -15px; }
+    .modulex-surec-seviye-merdiven-kupa .material-symbols-outlined { font-size: 30px; }
+    .modulex-surec-seviye-merdiven-kbilgi { padding-inline: 14px 0; }
+  }
+  .modulex-surec-seviye-merdiven-sure { display: inline-flex; align-items: center; gap: 6px; justify-self: start; width: fit-content; padding: 4px 12px; border-radius: 999px; background: color-mix(in srgb, --accent-- 12%, transparent); color: --text--; font-size: 0.85rem; font-weight: 600; }
+  .modulex-surec-seviye-merdiven-sure .material-symbols-outlined { font-size: 18px; color: --accentInk--; }
+  .modulex-surec-seviye-merdiven-etiket { color: --accentInk--; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .modulex-surec-seviye-merdiven-bag { color: inherit; text-decoration: none; }
+  .modulex-surec-seviye-merdiven-bag::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+  .modulex-surec-seviye-merdiven-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-surec-seviye-merdiven :is(.modulex-surec-seviye-merdiven-baslik, .modulex-surec-seviye-merdiven-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-surec-seviye-merdiven-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-surec-seviye-merdiven { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-surec-seviye-merdiven *, .modulex-surec-seviye-merdiven *::before, .modulex-surec-seviye-merdiven *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-surec-seviye-merdiven";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const gozlem = (s, P, az) => {
+        const gor = () => s.classList.add(P + "--gor");
+        s.classList.add(P + "--hazir");
+        if (az || !("IntersectionObserver" in window)) { gor(); return; }
+        const io = new IntersectionObserver((gs) => {
+          gs.forEach((g) => { if (g.isIntersecting) { gor(); io.disconnect(); } });
+        }, { threshold: 0.15 });
+        io.observe(s);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      gozlem(s, P, az);
+    });
+  })();
+</script>

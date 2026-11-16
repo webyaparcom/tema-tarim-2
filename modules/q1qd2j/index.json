@@ -1,0 +1,52 @@
+{
+  "name": "Süreç Seviye Merdiveni — yükselen basamak blokları",
+  "description": "Koyu zeminde adımlar soldan sağa yükselen basamaklardır: her basamak bir öncekinden yüksek bir blok (içinde dev numara, en üstte kupa), bloğun üstünde etiket, başlık, açıklama ve süre — siluet bir merdiven çizer. Görünür olunca bloklar sırayla yükselir. Mobilde basamaklar soldan büyüyen yatay şeritlere döner. surec-kaskad kartları çapraz aşağı indirir, surec-ters-sutun eşit yükseklikte sütunlardır; bu modülde basamak blokları sıra arttıkça yükselir (seviye/merdiven silueti), son basamakta ödül simgesi, giriş hareketi yükselme — ilerleme = seviye atlama metaforu. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "stairs",
+  "category": "surec",
+  "subCategory": "level-stairs",
+  "tags": [
+    "surec",
+    "stairs",
+    "levels",
+    "growth",
+    "dark",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-text, #111318)",
+    "text": "var(--mx-site-bg, #ffffff)",
+    "muted": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 78%, var(--mx-site-text, #111318))",
+    "kartBg": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 7%, transparent)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 18%, transparent)",
+    "accent": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 55%, var(--mx-site-bg, #ffffff))",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 45%, var(--mx-site-bg, #ffffff))",
+    "accentText": "var(--mx-site-text, #111318)",
+    "vurguBg": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 55%, var(--mx-site-bg, #ffffff))",
+    "vurguText": "var(--mx-site-text, #111318)",
+    "bgcolor": "var(--mx-site-text, #111318)",
+    "color": "var(--mx-site-bg, #ffffff)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "baslik": "adım adı — dil sözlüğü (zorunlu)",
+      "metin": "adımın açıklaması — dil sözlüğü",
+      "ikon": "Material Symbols adı",
+      "sure": "süre / takvim (ör. «1 hafta») — dil sözlüğü",
+      "no": "elle numara (yoksa 01, 02 …)",
+      "img": "görsel yolu (destekleyen yerleşimde)",
+      "url": "iç/dış bağlantı"
+    }
+  }
+}

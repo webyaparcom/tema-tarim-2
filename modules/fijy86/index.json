@@ -1,0 +1,53 @@
+{
+  "name": "Sayaç Termometre — civası oranı kadar yükselen cam tüpler",
+  "description": "Her rakamın yanında dikey bir cam termometre: hazne (ampul), çentikli cetvel ve oran (max / % / en büyük) kadar yükselen civa sütunu; görünür olunca civa dipten yükselir, hover'da hazne ısınır (hale). Rakam, etiket ve not tüpün yanındaki okuma kolonunda; mobilde tüp üstte, okuma altta. sayac-cubuk yatay çubuk, sayac-dolgu karo dolumu, sayac-sutun-grafik ızgara üstünde sütun çizer; bu modül her rakamı kendi dikey ölçü aletine (cam tüp + hazne + çentikli cetvel) bağlar — oran bir sıcaklık/nem okuması gibi okunur, yerleşim tüp | okuma kolonu iskeletidir. Sayılar sayfa diliyle biçimlenir (Intl), metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "thermostat",
+  "category": "stats",
+  "subCategory": "thermometer",
+  "tags": [
+    "stats",
+    "thermometer",
+    "gauge",
+    "vertical",
+    "fill",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "sayi": "sayı (zorunlu; 1200 · \"4.9\")",
+      "onek": "önek (dil sözlüğü; ör. «%»)",
+      "sonek": "sonek (dil sözlüğü; ör. «+», «/5»)",
+      "etiket": "etiket (dil sözlüğü, zorunlu)",
+      "metin": "kısa not (dil sözlüğü)",
+      "ikon": "Material Symbols adı",
+      "ondalik": "ondalık basamak (yoksa sayıdan)",
+      "max": "oran tavanı (halka/çubuk/dolgu; yoksa % → 100, değilse listedeki en büyük)"
+    }
+  }
+}

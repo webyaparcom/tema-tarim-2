@@ -1,0 +1,62 @@
+{
+  "name": "Açılış Hasat Takvimi — kemer görsel, 12 aylık ürün sezonu çizelgesi",
+  "description": "Üstte bir yanda üst etiket, h1, metin, düğmeler; diğer yanda kemer biçimli görsel. Altında 12 aylık sezon çizelgesi: ay başlıkları sayfa dilinde (Intl; mobilde tek harf), her madde bir satır (ikon · ad · değer · ay aralığı) ve sezonunu gösteren çubuk (ay: \"6-9\", yıl dönümü \"11-2\" iki parçaya bölünür). Ziyaretçinin bulunduğu ay ve o ay hasatta olan çubuklar işaretlenir. Hiçbir maddede ay yoksa çizelge yerine düz madde listesi. acilis-istatistik-serit ve acilis-sayi-sutunu maddeleri sayı olarak dizer, cagri-hasat-takvim çağrı bandıdır; bu modül maddeleri 12 sütunlu bir gantt çizelgesine yerleştirir (ay aralığı → grid-column), ay adları sunucuda Intl ile basılır, içinde bulunulan ay istemcide işaretlenir. Başlık h1, ilk görsel eager. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Başlık yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "calendar_month",
+  "category": "hero",
+  "subCategory": "harvest-calendar",
+  "tags": [
+    "hero",
+    "calendar",
+    "season",
+    "gantt",
+    "arch",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "img": "",
+    "img2": "",
+    "video": "",
+    "poster": "",
+    "alt": "",
+    "cta_ad": "",
+    "cta_url": "",
+    "cta2_ad": "",
+    "cta2_url": "",
+    "rozet_ikon": "",
+    "rozet_deger": "",
+    "rozet_metin": "",
+    "bg": "var(--mx-site-bg, #ffffff)",
+    "text": "var(--mx-site-text, #111318)",
+    "muted": "color-mix(in srgb, var(--mx-site-text, #111318) 68%, var(--mx-site-bg, #ffffff))",
+    "kartBg": "var(--mx-site-surface, #f6f7f9)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-text, #111318) 12%, transparent)",
+    "accent": "var(--mx-site-primary, #2563eb)",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 70%, var(--mx-site-text, #111318))",
+    "accentText": "var(--mx-site-primary-contrast, #ffffff)",
+    "vurguBg": "var(--mx-site-primary, #2563eb)",
+    "vurguText": "var(--mx-site-primary-contrast, #ffffff)",
+    "bgcolor": "var(--mx-site-bg, #ffffff)",
+    "color": "var(--mx-site-text, #111318)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "desing/data",
+    "alanlar": {
+      "ikon": "madde ikonu (Material Symbols)",
+      "deger": "sayı/değer (ör. 1.200+, dil sözlüğü olabilir)",
+      "metin": "madde metni (dil sözlüğü)",
+      "img": "madde görseli (mozaik yerleşimlerde)",
+      "url": "madde bağlantısı"
+    }
+  }
+}
