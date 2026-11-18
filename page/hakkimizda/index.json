@@ -2,7 +2,9 @@
   "name": {
     "tr": "Kooperatif",
     "en": "Cooperative",
-    "ar": "التعاونية"
+    "ar": "التعاونية",
+    "de": "Genossenschaft",
+    "ru": "Кооператив"
   },
   "status": "play",
   "category": "",
@@ -24,7 +26,9 @@
   "description": {
     "tr": "Değerler, üyelik basamakları ve bu sezonun sayıları (kurgusal).",
     "en": "Values, membership steps and this season’s figures (fictional).",
-    "ar": "القيم ودرجات العضوية وأرقام هذا الموسم (افتراضي)."
+    "ar": "القيم ودرجات العضوية وأرقام هذا الموسم (افتراضي).",
+    "de": "Werte, Mitgliedschaftsstufen und die Zahlen dieser Saison (fiktiv).",
+    "ru": "Значения, уровни членства и цифры этого сезона (вымышленные)."
   },
   "spot": {
     "tr": "",
@@ -35,12 +39,16 @@
   "title": {
     "tr": "Kooperatif",
     "en": "Cooperative",
-    "ar": "التعاونية"
+    "ar": "التعاونية",
+    "de": "Genossenschaft",
+    "ru": "Кооператив"
   },
   "keyword": {
     "tr": "hakkımızda",
     "en": "about",
-    "ar": "من نحن"
+    "ar": "من نحن",
+    "de": "Über uns",
+    "ru": "О нас"
   },
   "text": {},
   "update": "2026-11-16T18:15:02.653Z",

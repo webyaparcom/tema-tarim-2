@@ -2,7 +2,9 @@
   "name": {
     "tr": "İletişim",
     "en": "Contact",
-    "ar": "اتصل بنا"
+    "ar": "اتصل بنا",
+    "de": "Kontakt",
+    "ru": "Контакты"
   },
   "status": "play",
   "category": "",
@@ -23,7 +25,9 @@
   "description": {
     "tr": "Not formu, adres ve kooperatif saatleri.",
     "en": "Note form, address and cooperative hours.",
-    "ar": "نموذج الملاحظة والعنوان وساعات التعاونية."
+    "ar": "نموذج الملاحظة والعنوان وساعات التعاونية.",
+    "de": "Notizformular, Adresse und Genossenschaftszeiten.",
+    "ru": "Форма заметки, адрес и часы работы кооператива."
   },
   "spot": {
     "tr": "",
@@ -34,12 +38,16 @@
   "title": {
     "tr": "İletişim",
     "en": "Contact",
-    "ar": "اتصل بنا"
+    "ar": "اتصل بنا",
+    "de": "Kontakt",
+    "ru": "Контакты"
   },
   "keyword": {
     "tr": "iletişim",
     "en": "contact",
-    "ar": "اتصال"
+    "ar": "اتصال",
+    "de": "Kontakt",
+    "ru": "контакты"
   },
   "text": {},
   "update": "2026-11-16T18:15:02.657Z",

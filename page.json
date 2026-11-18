@@ -5,12 +5,16 @@
       "name": {
         "tr": "Takvim",
         "en": "Calendar",
-        "ar": "التقويم"
+        "ar": "التقويم",
+        "de": "Kalender",
+        "ru": "Календарь"
       },
       "description": {
         "tr": "Ürünlerin mevsim takvimi ve bahçeden depoya kareler.",
         "en": "The crops’ season calendar and frames from orchard to store.",
-        "ar": "تقويم مواسم المحاصيل ولقطات من البستان إلى المستودع."
+        "ar": "تقويم مواسم المحاصيل ولقطات من البستان إلى المستودع.",
+        "de": "Saisonkalender der Produkte und Aufnahmen vom Garten bis ins Lager.",
+        "ru": "Сезонный календарь продуктов и кадры от сада до склада."
       },
       "path": "hizmetler",
       "icon": "work",
@@ -31,7 +35,9 @@
       "name": {
         "tr": "Kooperatif",
         "en": "Cooperative",
-        "ar": "التعاونية"
+        "ar": "التعاونية",
+        "de": "Genossenschaft",
+        "ru": "Кооператив"
       },
       "status": "play",
       "id": "hakkimizda",
@@ -53,14 +59,18 @@
       "description": {
         "tr": "Değerler, üyelik basamakları ve bu sezonun sayıları (kurgusal).",
         "en": "Values, membership steps and this season’s figures (fictional).",
-        "ar": "القيم ودرجات العضوية وأرقام هذا الموسم (افتراضي)."
+        "ar": "القيم ودرجات العضوية وأرقام هذا الموسم (افتراضي).",
+        "de": "Werte, Mitgliedschaftsstufen und die Zahlen dieser Saison (fiktiv).",
+        "ru": "Значения, уровни членства и цифры этого сезона (вымышленные)."
       }
     },
     {
       "name": {
         "tr": "İletişim",
         "en": "Contact",
-        "ar": "اتصل بنا"
+        "ar": "اتصل بنا",
+        "de": "Kontakt",
+        "ru": "Контакты"
       },
       "status": "play",
       "id": "iletisim",
@@ -81,7 +91,9 @@
       "description": {
         "tr": "Not formu, adres ve kooperatif saatleri.",
         "en": "Note form, address and cooperative hours.",
-        "ar": "نموذج الملاحظة والعنوان وساعات التعاونية."
+        "ar": "نموذج الملاحظة والعنوان وساعات التعاونية.",
+        "de": "Notizformular, Adresse und Genossenschaftszeiten.",
+        "ru": "Форма заметки, адрес и часы работы кооператива."
       }
     }
   ],

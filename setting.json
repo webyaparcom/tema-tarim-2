@@ -4,12 +4,16 @@
   "description": {
     "tr": "Ova Birlik Kooperatifi: Birecik’te 214 üretici ailenin fıstık, zeytin, bal, pekmez ve buğdayı. Mevsim takvimi, üyelik ve toplu satış. Demo site; içerik kurgusaldır.",
     "en": "Ova Birlik Cooperative: pistachios, olives, honey, molasses and wheat from 214 farming families in Birecik. Season calendar, membership and bulk sales. Demo site; content is fictional.",
-    "ar": "تعاونية أوفا بيرليك: فستق وزيتون وعسل ودبس وقمح من 214 أسرة منتجة في بيره جك. تقويم المواسم والعضوية والبيع بالجملة. موقع تجريبي؛ المحتوى افتراضي."
+    "ar": "تعاونية أوفا بيرليك: فستق وزيتون وعسل ودبس وقمح من 214 أسرة منتجة في بيره جك. تقويم المواسم والعضوية والبيع بالجملة. موقع تجريبي؛ المحتوى افتراضي.",
+    "de": "Ova Birlik Kooperatifi: Pistazien, Oliven, Honig, Pekmez und Weizen von 214 Erzeugerfamilien in Birecik. Saisonkalender, Mitgliedschaft und Großverkauf. Demo-Website; die Inhalte sind fiktiv.",
+    "ru": "Ova Birlik Kooperatifi: фисташки, оливки, мёд, пекмез и пшеница 214 семей-производителей из Бирекика. Сезонный календарь, членство и оптовые продажи. Демо-сайт; содержание вымышленное."
   },
   "keyword": {
     "tr": "tarım kooperatifi, antep fıstığı, zeytin, bal, pekmez, hasat takvimi, birecik",
     "en": "farming cooperative, pistachio, olive, honey, molasses, harvest calendar, birecik",
-    "ar": "تعاونية زراعية، فستق حلبي، زيتون، عسل، دبس، تقويم الحصاد، بيره جك"
+    "ar": "تعاونية زراعية، فستق حلبي، زيتون، عسل، دبس، تقويم الحصاد، بيره جك",
+    "de": "Agrargenossenschaft, Pistazien, Oliven, Honig, Traubensirup, Erntekalender, Birecik",
+    "ru": "сельскохозяйственный кооператив, фисташки, оливки, мёд, пекмез, календарь урожая, Бирекик"
   },
   "category": "Kurumsal",
   "name": "Ova Birlik",
@@ -18,15 +22,27 @@
     "tr": true,
     "en": true,
     "ar": true,
-    "de": false,
-    "ru": false,
+    "de": true,
+    "ru": true,
     "es": false,
     "fr": false,
     "it": false,
     "ja": false,
     "zh": false,
     "ko": false,
-    "pt": false
+    "pt": false,
+    "fa": false,
+    "he": false,
+    "ur": false,
+    "nl": false,
+    "pl": false,
+    "uk": false,
+    "az": false,
+    "ka": false,
+    "el": false,
+    "bg": false,
+    "ro": false,
+    "hi": false
   },
   "logo": "logo.png",
   "multi": false,
